@@ -1,0 +1,44 @@
+{% load el_pagination_tags %}
+{% load audit_trails %}
+<br>
+<table id="all_fleet_table" class="table table-hover ">
+<thead>
+  <tr>
+    <th>Registration Number</th>
+    <th>Change Date/Time</th> 
+    <th>Field Changed</th>
+    <th style="width: 20%;">Previous Value</th>
+    <th style="width: 20%;">New Value</th>
+    <th>Actioned By</th>
+  </tr>
+</thead>
+<tbody>
+  {% paginate vehicles %}
+  {% for vehicle in vehicles %}
+    {% get_vehicle_history vehicle  as histories %}
+      {% for history in histories %}
+        <tr class="{% cycle 'even_row' 'odd_row' %}">
+    
+          <td>{{ vehicle.registration_number }}</td>
+          <td>{{ vehicle.changed_at|date:"Y m d H:i:s" }}</td>
+          <td>{{ history.keys.0|title }}</td>
+          <td>{{ history.values.0.from_val }}</td>
+          <td>{{ history.values.0.to_val }}</td>
+          <td>{{ vehicle.modified_by }}</td>
+        </tr>
+
+      {% endfor %}
+  {% endfor %}
+  <tr>
+    <td colspan='6' style="text-align: center">
+    <div class="center">
+      <div class="pagination">
+        {% show_pages %}
+      </div>
+    </div>
+    </td>
+  </tr>
+
+</tbody>
+
+</table>

@@ -1,0 +1,27 @@
+<div style="max-height: 600px; overflow: auto;">
+<table id="insurance_claims" class="table table-hover ">
+  <tr>
+    <th>Insurance</th>
+    <th>Quote Reference Number</th>
+    <th>Claim Reference Number</th>
+    <th>Claim Type</th>
+    <th>Invoice Amount</th>
+    <th>Driver Co-Payment</th>
+    <th>Total</th>
+    <th>Incident Date</th>
+  </tr>
+  {% for insurance_claim in insurance_claims %}
+
+  <tr>
+    <td>{{ insurance_claim.vendor }}</td>
+    <td>{{ insurance_claim.quote_reference_number }}</td>
+    <td>{{ insurance_claim.insurance_reference_number }}</td>
+    <td>{{ insurance_claim.claim_type }}</td>
+    <td>{{ insurance_claim.ivoice_amount }}</td>
+    <td>{{ insurance_claim.driver_co_payment }}</td>
+    <td></td>
+    <td>{{ insurance_claim.incident_date |date:"d M Y" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+</div>

@@ -1,0 +1,23 @@
+<div>
+  <table id="vehicle_documents_table" class="table table-hover">
+    <thead>
+      <th>Make</th>
+      <th>Size</th>
+      <th>Position</th>
+      <th>Serial Number</th>
+      <th>Mileage at Replacement</th>
+    </thead>
+    <tbody>
+      <tr>
+        {% for tyre in vehicle_tyres %}
+        <td>{{tyre.make }}</td>
+        <td>{{tyre.size }}</td>
+        <td>{{tyre.position }}</td>
+        <td>{{tyre.serial_number }}</td>
+        <td>{{tyre.mileage_at_replacement }}</td>
+        <td></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

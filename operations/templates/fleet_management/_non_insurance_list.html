@@ -1,0 +1,33 @@
+{% load el_pagination_tags %}
+<table id="non_insurances" class="table table-hover ">
+  <tr>{% if non_insurances %}
+    <th>Edit</th>{% endif %}
+    <th>Registration Number</th>
+    <th>Status</th> 
+    <th>Vehicle Tracking</th>   
+    <th>Claim Reference</th>
+    <th>Claim Number</th>  
+  </tr>
+
+  {% paginate non_insurances %}
+  {% for non_insurance in non_insurances %}
+
+  <tr>
+    <td><a href="{% url 'fleetmanagement:edit_non_insurance' non_insurance.id %}" data-toggle="" data-toggle="tooltip" data-placement="right" title="Edit Non Insurance"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a></td>
+    <td>{{ non_insurance.vehicle }}</td>
+    <td>{{ non_insurance.status }}</td>
+    <td>{{ non_insurance.vehicle_tracking }}</td>
+    <td>{{ non_insurance.insurance_reference_number }}</td>
+    <td>{{ non_insurance.claim_number }}</td>
+  </tr>
+  {% endfor %}
+  <tr>
+    <td colspan='13' style="text-align: center">
+    <div class="center">
+      <div class="pagination">
+        {% show_pages %}
+      </div>
+    </div>
+    </td>
+  </tr>
+</table>
