@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from operations.models import OperationsUser
 from simple_history.models import HistoricalRecords
 from lib.fields import ProtectedForeignKey
-from fleet_management.models import VehicleDriver, Incident
+# from fleet_management.models import VehicleDriver, Incident
 
 class Employee(BaseModel):
 	first_name = models.CharField(max_length=120, null=False, blank=False, verbose_name='First Name')

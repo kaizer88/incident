@@ -93,7 +93,7 @@ INSTALLED_APPS = [
     'it_support',
     'employees',
     'api',
-    'facilities',
+    # 'facilities',
     'assets',
     'djcelery',
 

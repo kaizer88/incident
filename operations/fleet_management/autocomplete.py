@@ -15,29 +15,29 @@ import threading
 
 from lib.file_handler import file_download
 
-from models import Vehicle, VehicleTyre, PurchaseDetail, VehicleMaintenance, FinanceDetail
-from models import FuelCard, Tracker, Insurance, Branding, VehicleDocument
-from models import VehicleDriver, Incident, IncidentDocument
+# from models import Vehicle, VehicleTyre, PurchaseDetail, VehicleMaintenance, FinanceDetail
+# from models import FuelCard, Tracker, Insurance, Branding, VehicleDocument
+# from models import VehicleDriver, Incident, IncidentDocument
 
-from forms import VehicleForm, VehicleTyreForm, PurchaseDetailForm, FinanceDetailForm
-from forms import VehicleMaintenanceForm, FuelCardUsageForm, TrackerForm  #, FuelCardForm
-from forms import InsuranceForm, InsuranceForm, BrandingForm, VehicleDocumentForm
+# from forms import VehicleForm, VehicleTyreForm, PurchaseDetailForm, FinanceDetailForm
+# from forms import VehicleMaintenanceForm, FuelCardUsageForm, TrackerForm  #, FuelCardForm
+# from forms import InsuranceForm, InsuranceForm, BrandingForm, VehicleDocumentForm
 
-from forms import VehicleDriver, VehicleFilterForm, VehicleImportForm, VehicleTyreFormset
-from forms import VehicleAssignForm, AddIncidentForm, IncidentFilterForm, TrafficFineForm
-from forms import IncidentFileForm, IncidentDocumentForm, VehicleMaintenanceFilterForm
-from forms import VehicleDriver, VehicleFilterForm, VehicleImportForm, FuelCardImportForm, VehicleTyreFormset
-from forms import FuelCardUsageFilterForm, IncidentForm, DocumentFileForm, PhotoFileForm #, FuelCardFilterForm
-from forms import InsuredVehiclesFilterForm, TrafficFineFilterForm, MileageImportForm
+# from forms import VehicleDriver, VehicleFilterForm, VehicleImportForm, VehicleTyreFormset
+# from forms import VehicleAssignForm, AddIncidentForm, IncidentFilterForm, TrafficFineForm
+# from forms import IncidentFileForm, IncidentDocumentForm, VehicleMaintenanceFilterForm
+# from forms import VehicleDriver, VehicleFilterForm, VehicleImportForm, FuelCardImportForm, VehicleTyreFormset
+# from forms import FuelCardUsageFilterForm, IncidentForm, DocumentFileForm, PhotoFileForm #, FuelCardFilterForm
+# from forms import InsuredVehiclesFilterForm, TrafficFineFilterForm, MileageImportForm
 
-from operations.forms import AddressForm, ContactForm, InsurerForm, InsurerFilterForm
+# from operations.forms import AddressForm, ContactForm, InsurerForm, InsurerFilterForm
 
-from importer import import_vehicle_data, import_fuel_card_data
-from exporter import export_vehicle_data, extract_incident_data
-from exporter import extract_vehicle_maintenance_data, extract_insurer_vehicles_data, extract_insurers_data
+# from importer import import_vehicle_data, import_fuel_card_data
+# from exporter import export_vehicle_data, extract_incident_data
+# from exporter import extract_vehicle_maintenance_data, extract_insurer_vehicles_data, extract_insurers_data
 
 # Create your views here.
-from employees.models import *
+# from employees.models import *
 
 from operations.models import *
 
@@ -45,51 +45,51 @@ from facilities.models import *
 
 from dal import autocomplete
 
-class VehicleAutocomplete(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
+# class VehicleAutocomplete(autocomplete.Select2QuerySetView):
+#     def get_queryset(self):
 
-        if not self.request.user.is_authenticated():
-            return Vehicle.objects.none()
+#         if not self.request.user.is_authenticated():
+#             return Vehicle.objects.none()
 
-        qs = Vehicle.objects.all().order_by('registration_number')
+#         qs = Vehicle.objects.all().order_by('registration_number')
 
-        if self.q:
-            qs = qs.filter(registration_number__istartswith=self.q)
+#         if self.q:
+#             qs = qs.filter(registration_number__istartswith=self.q)
 
-        return qs 
+#         return qs 
 
 
-class DriverAutocomplete(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
+# class DriverAutocomplete(autocomplete.Select2QuerySetView):
+#     def get_queryset(self):
 
-        if not self.request.user.is_authenticated():
-            return Employee.objects.none()
+#         if not self.request.user.is_authenticated():
+#             return Employee.objects.none()
 
-        qs = Employee.objects.all().order_by('first_name','last_name')
+#         qs = Employee.objects.all().order_by('first_name','last_name')
 
-        if self.q:
-            qs = qs.filter(Q(first_name__icontains=self.q) |
-                           Q(last_name__icontains=self.q))
+#         if self.q:
+#             qs = qs.filter(Q(first_name__icontains=self.q) |
+#                            Q(last_name__icontains=self.q))
 
-        return qs 
+#         return qs 
 
-class FuelCardAutocomplete(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
+# class FuelCardAutocomplete(autocomplete.Select2QuerySetView):
+#     def get_queryset(self):
         
-        if not self.request.user.is_authenticated():
-            return FuelCard.objects.none()
+#         if not self.request.user.is_authenticated():
+#             return FuelCard.objects.none()
 
-        vehicle_id = self.forwarded.get('vehicle_id', None)
+#         vehicle_id = self.forwarded.get('vehicle_id', None)
 
-        if vehicle_id:
-            qs = FuelCard.objects.filter(vehicle_assigned__id=vehicle_id).order_by('card_number')
-        else:
-            qs = FuelCard.objects.all().order_by('card_number')
+#         if vehicle_id:
+#             qs = FuelCard.objects.filter(vehicle_assigned__id=vehicle_id).order_by('card_number')
+#         else:
+#             qs = FuelCard.objects.all().order_by('card_number')
 
-        if self.q:
-            qs = qs.filter(card_number__icontains=self.q)
+#         if self.q:
+#             qs = qs.filter(card_number__icontains=self.q)
 
-        return qs 
+#         return qs 
 
 class VendorTrackerAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):

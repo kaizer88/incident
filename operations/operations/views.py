@@ -8,9 +8,9 @@ from models import OperationsUser, Region, Branch, BaseTicket
 from forms import OperationsUserForm, OperationsUserFilterForm, RegionForm, ServiceProviderImportForm
 from forms import BranchForm, DownloadsFilterForm, TicketFilterForm, TicketForm, DistrictImportForm
 from forms import EditUserForm
-from fleet_management.exporter import extract_user_data, extract_tickets_data
+# from fleet_management.exporter import extract_user_data, extract_tickets_data
 from operations.models import *
-from fleet_management.importer import import_service_provider_data, import_district_data
+# from fleet_management.importer import import_service_provider_data, import_district_data
 from lib.file_handler import file_download
 import threading
 import datetime
