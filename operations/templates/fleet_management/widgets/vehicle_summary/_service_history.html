@@ -1,0 +1,43 @@
+{% if service_history %}
+<div style="max-height: 300px; overflow: auto;">  
+  <table id="incident_documents_table" class="table table-hover">
+  <tr>
+    <th>Service Date</th>
+    <th>Booking Date</th>
+    <th>Booking Time</th>
+    <th>Driver</th>
+    <th>Service</th>
+    <th>Maintenance</th>
+    <th>Current Mileage</th>
+    <th>Amount</th>
+    <th>Tyres</th>
+    <th>Brakes</th>
+    <th>Clutch</th>
+    <th>Other</th>
+    <th style="width: 20%;">Comment</th>
+    <th>Service Provider</th>
+  </tr>
+  {% for service in service_history %}
+  <tr>
+    <td>{{ service.service_date|default_if_none:"" |date:"d M Y" }}</td>
+    <td>{{ service.booking_date|default_if_none:"" |date:"d M Y" }}</td>
+    <td>{{ service.booking_date|default_if_none:"" |date:"H:i" }}</td>
+    <td>{{ service.vehicle.driver|default_if_none:"" }}</td>
+    <td>{% if service.service %}<i class="far fa-check-square"></i>{% else %}<i class="far fa-square"></i>{% endif %}</td>
+    <td>{% if service.maintenance %}<i class="far fa-check-square"></i>{% else %}<i class="far fa-square"></i>{% endif %}</td>
+    <td>{{ service.current_mileage |title }}</td>
+    <td>{{ service.document_amount|default_if_none:"0.00" }}</td>
+    <td>{% if service.tyres %}<i class="far fa-check-square"></i>{% else %}<i class="far fa-square"></i>{% endif %}</td>
+    <td>{% if service.brakes %}<i class="far fa-check-square"></i>{% else %}<i class="far fa-square"></i>{% endif %}</td>
+    <td>{% if service.clutch %}<i class="far fa-check-square"></i>{% else %}<i class="far fa-square"></i>{% endif %}</td>
+    <td>{% if service.other %}<i class="far fa-check-square"></i>{% else %}<i class="far fa-square"></i>{% endif %}</td>
+    <td>{{ service.comment }}</td>
+    <td>{{ service.vendor.name |title }}</td>
+    {% empty %}
+    <tr><td class="info" colspan="20">No Records Yet</td></tr>
+  </tr>
+    {% endfor %}
+</table>
+</div>
+
+{% endif %}

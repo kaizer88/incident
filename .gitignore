@@ -1,0 +1,12 @@
+*#
+*~
+~*
+*local_settings.py
+*pyc
+venv
+statics_collected
+logs
+media
+Dockerfile
+config/docker-entry.sh
+config/pisa_util.py

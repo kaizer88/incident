@@ -1,0 +1,29 @@
+<div style="max-height: 600px; overflow: auto;">
+  <table id="vehicle_incidents_table" class="table table-hover">
+    <thead>
+      <th>Incident Date/Time</th>
+      <th>Driver</th>
+      <th>Incident Type</th>
+      <th>Description</th>
+      <th>Amount</th>
+      <th>Driver Co-Payment</th>
+      <th>Status</th>
+      <th>Resolved</h>
+    </thead>
+    <tbody>
+      {% for incident in incidents_history %}
+      <tr>
+        <td>{{incident.incident_date}}</td>
+        <td>{{incident.driver.full_name}}</td>
+        <td>{{incident.get_incident_type_display}}</td>
+        <td>{{incident.description}}</td>
+        <td>{{incident.invoice_amount|default_if_none:'0.00'}}</td>
+        <td>{{incident.get_driver_co_payment_display}}</td>
+        <td>{{incident.get_status_display}}</td>
+        <td>{{incident.resolved}}</td>
+        <td></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      {% load humanize %}
+      {% load staticfiles%}
+      <style type="text/css">
+         @page {
+         margin: 2cm 1.4cm 2cm 1.4cm;
+         @frame footer {
+         -pdf-frame-content: footerblock;
+         bottom: 1cm;
+         margin-left: 1cm;
+         margin-right: 1cm;
+         margin-top: 1cm;
+         height: 3.9cm;
+         }
+         }
+         .page-break{
+         page-break-after: always;
+         }
+         html *
+         {
+         font-size: 1.1em !important;
+         color: #000 !important;
+         font-family: Arial !important;
+         justify-content: space-around;
+         text-align: justify;
+         }
+         p {
+         font-size: 120%;
+         justify-content: space-around;
+         text-align: justify;
+         }
+         p.small_text {
+         font-size: 80%;
+         }
+         p.notes {
+         font-size: 100%;
+         }    
+         p.large_text {
+         font-size: 140%;
+         }    
+         p.bold_text {
+         font-weight: bold;
+         }
+         p.italics {
+         font-size: 80%;
+         font-style: italic;
+         }
+         table, th, td{
+         border: 0px;
+         font-size: 100%;
+         vertical-align: top;
+         }
+         .branch_info td {
+         display: inline-block;
+         }
+         table.details, tr.details, td.details{
+         border: 1px solid black;
+         padding-top: 5px;
+         padding-left: 3px;
+         padding-right: 3px;
+         padding-bottom: 0px;
+         font-size: 80%;
+         }
+         tr.alt_row{
+         background-color: #d3d3d3;
+         }
+         .table_class {
+         font-weight: normal;
+         float: left;
+         }
+         .number { text-align: right; }
+         .center-me { text-align: center; }
+         ul {
+         list-style-type: none;
+         font-size: 110%;
+         }
+         .nowrap {
+         white-space: nowrap;
+         }
+      </style>
+      {% block content %}
+   </head>
+   <body>
+      <table style="width:100%">
+         <tr>
+            <td colspan="3"></td>
+            <td></td>
+            <td align="right" valign="top">
+               <!-- <img src="http://localhost:8000/static/img/emerald_logo.png" height="60"><br><br> -->
+            </td>
+         </tr>
+      </table>
+      <table style="width:100%">
+         <tr>
+            <td align="center" valign="top">
+               <p class="large_text bold_text center-me">
+                  EXPENSE REQUISITION FORM
+               </p>
+            </td>
+         </tr>
+      </table>
+      <br>
+      <table>
+         <tr class="alt_row">
+            <td class="details"><strong>DATE</strong></td>
+            <td class="details">{%now "d M Y"%}</td>
+            <td class="details"><strong>URGENT</strong></td>
+            <td class="details"></td>
+            <td class="details"></td>
+         </tr>
+         <tr>
+            <td class="details"><strong>REGION</strong></td>
+            <td class="details">{{service_booking.vehicle.region}}</td>
+            <td class="details"><strong>AMOUNT</strong></td>
+            <td colspan="2" class="details">R {{service_booking.document_amount}}</td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>SUPPLIER</strong></td>
+            <td class="details">{{service_booking.vendor}}</td>
+            <td class="details"><strong>BUDGETED</strong></td>
+            <td class="details"></td>
+            <td class="details"></td>
+         </tr>
+      </table>
+      <br>
+      <table>
+         <tr>
+            <td colspan="2" align="center">
+               <p class="italics center-me">Please state in the space provided below what the purpose for the requisition is:</p>
+            </td>
+            <td colspan="2"></td>
+         </tr>
+      </table>
+      <table>
+         <tr class="alt_row">
+            <td colspan="5" class="details" align="center"><strong>DETAILS OF EXPENSE</strong></td>
+         </tr>
+         <tr>
+            <td colspan="5" class="details">{{service_booking.comment}}</td>
+         </tr>
+      </table>
+      <br>
+      <table>
+         <tr class="alt_row">
+            <td colspan="5" class="details"><strong>REQUESTED BY</strong></td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>NAME</strong></td>
+            <td colspan="4" class="details">{{service_booking.created_by}}</td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>DEPARTMENT</strong></td>
+            <td colspan="4" class="details">Fleet Department</td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>DESIGNATION</strong></td>
+            <td colspan="4" class="details">Fleet Administrator</td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>SIGNATURE</strong></td>
+            <td colspan="4" class="details"></td>
+         </tr>
+      </table>
+      <br>
+      <table>
+         <tr class="alt_row">
+            <td colspan="5" class="details"><strong>DEPARTMENT AUTHORISATION</strong></td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>NAME</strong></td>
+            <td colspan="4" class="details">{{service_booking.authorised_by}}</td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>DEPARTMENT</strong></td>
+            <td colspan="4" class="details">Operations</td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>DESIGNATION</strong></td>
+            <td colspan="4" class="details"></td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>SIGNATURE</strong></td>
+            <td colspan="4" class="details"></td>
+         </tr>
+      </table>
+      <br>
+      <table>
+         <tr class="alt_row">
+            <td colspan="5" class="details"><strong>FINAL AUTHORISATION</td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>NAME</strong></td>
+            <td colspan="4" class="details"></td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>DEPARTMENT</strong></td>
+            <td colspan="4" class="details">Finance Department</td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>DESIGNATION</strong></td>
+            <td colspan="4" class="details">Finance Executive</td>
+         </tr>
+         <tr class="alt_row">
+            <td class="details"><strong>SIGNATURE</strong></td>
+            <td colspan="4" class="details"></td>
+         </tr>
+      </table>
+      <br>
+      {% endblock %} 
+   </body>
+   <div id="footerblock" align="center">
+      <table>
+         <tr>
+            <td width="5%"></td>
+            <td style="border-top : 1pt double black; color: #A9A9A9"><br><strong>DIRECTOR:  ANDRE VAN DER WESTHUIZEN, EC DU TOIT<br>
+               86 EDWARD STREET, STERLING BUILDING, BELLVILLE, CAPE TOWN<br>
+               TEL:  086 166 6333</strong>
+            </td>
+            <td width="5%"></td>
+         </tr>
+      </table>
+   </div>

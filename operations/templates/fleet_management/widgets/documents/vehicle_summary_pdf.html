@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    {% block head %}
+  <head>
+    {%block style%}
+
+  {% endblock %}
+  {% endblock %}
+  {% load humanize %}
+{% block content %}
+<style type="text/css">
+   @page {
+      margin: 1cm;
+      @frame footer {
+             -pdf-frame-content: footerblock;
+             bottom: 1cm;
+             margin-left: 1cm;
+             margin-right: 1cm;
+                    margin-top: 1cm;
+                  height: 1cm;
+      }
+   }
+</style>
+</head>
+<body>
+
+<table style="width:100% ;">
+  <tr>
+    <td colspan="1" valign="top">
+    </td>
+    <td></td>
+    <td colspan="1"><b>EMERALD LIFE (PTY) LTD</b> <br/>
+    86 EDWARD STREET, STERLING BUILDING 3RD FLOOR,
+    BELLVILLE, 7530 <br/>
+    WESTERN CAPE <br/>
+    TELEPHONE: 0861666333 <br/>
+    FACSIMILE: 0866050135 <br/>
+    E-MAIL: INFO@EMERALDLIFE.CO.ZA <br/>
+    <br/>
+    </td>
+  </tr>
+  <tr><th colspan="3" style="text-align: center"><strong>VEHICLE SUMMARY DOCUMENT</strong></th></tr>
+  </table>
+
+<table>
+
+<tr><th colspan="4"></th></tr>
+<tr><th colspan="4" style="text-align:center; border:1pt solid black; padding-top: 2px; padding-bottom: 0px;">VEHICLE DETAILS </th></tr>
+<tr><th colspan="4"></th></tr>
+</table>
+<table>
+<tr></tr>
+<tr>
+  <td colspan="4">
+    <b>REGISTRATION NUMBER:</b>
+    {{vehicle}}
+  </td>
+  <td colspan="4">
+    <b>VIN NUMBER:</b>
+    {{vehicle.vin_number}}
+  </td>
+</tr>
+<tr></tr>
+<tr>
+  <td colspan="4">
+    <b>MAKE:</b>
+    {{vehicle.vehicle_make}}
+  </td>
+  <td colspan="4">
+    <b>MODEL:</b>
+    {{vehicle.vehicle_model}}
+  </td>
+</tr>
+<tr></tr>
+<tr>
+  <td colspan="4">
+    <b>YEAR MODEL:</b>
+    {{vehicle.year_model}}
+  </td>
+  <td colspan="4">
+    <b>LAST KM's(KM):</b>
+    {{vehicle.updated_mileage}}
+  </td>
+</tr>
+<tr></tr>
+<tr>
+  <td colspan="4">
+    <b>LAST KM UPDATE(DATE):</b>
+    {{vehicle.updated_date|date:"Y-m-d"}}
+  </td>
+  <td colspan="3">
+    <b>REGION:</b>
+    {{vehicle.region}}
+  </td>
+</tr>
+<tr></tr>
+<tr>
+  <td colspan="4">
+    <b>DISTRICT:</b>
+    {{vehicle.district}}
+  </td>
+  <td colspan="4">
+    <b>CURRENT DRIVER:</b>
+    {{vehicle.current_vehicle_driver.driver}}
+  </td>
+</tr>
+<tr></tr>
+<tr>
+  <td colspan="4">
+    <b>CURRENT FUEL CARD NUMBER:</b>
+    {{vehicle.get_current_fuel_card.fuel_card}}
+  </td>
+  <td colspan="4">
+    <b>VEHICLE STATUS:</b>
+    {{vehicle.status}}
+  </td>
+</tr>
+<tr></tr>
+<tr>
+  <td colspan="4">
+    <b>SERVICE AREA:</b>
+    {{vehicle.service_area}}
+  </td>
+  <td colspan="4">
+    <b>LAST SERVICE DATE:</b>
+    {{last_service_date.service_date |date:"Y-m-d"}}
+  </td>
+</tr>
+<tr></tr>
+<tr>
+  <td colspan="4">
+    <b>LAST SERVICE MILEAGE:</b>
+    {{last_service_mileage.current_mileage}}
+  </td>
+  <td colspan="4">
+    <b>FLEET ADMINISTRATOR:</b>
+    {{vehicle.created_by|title}}
+  </td>
+</tr>
+
+</table>
+<table>
+
+<tr><th colspan="4"></th></tr>
+<tr><th colspan="4" style="text-align:center; border:1pt solid black; padding-top: 2px; padding-bottom: 0px;">VEHICLE INCIDENTS </th></tr>
+<tr><th colspan="4"></th></tr>
+</table>
+<table>
+  <tr>
+    Right rear fender : <b>{{insurance.right_rear_fender}}</b>  &nbsp; &nbsp;Right front door:{{insurance.right_rear_fender}}
+    <b>Right rear fender : </b>{{insurance.right_rear_fender}}  &nbsp; &nbsp;<b>Right front door:</b>{{insurance.right_rear_fender}}
+    <td>"  "</td><b>  
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr></tr>
+  <tr></tr>
+  <tr></tr>
+  <tr></tr>
+  <tr></tr>
+  <tr></tr>
+  <tr></tr>
+</table>
+{{insurance.right_rear_fender}}
+  {% endblock %}
+</body>
+</html>
+
